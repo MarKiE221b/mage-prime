@@ -14,7 +14,7 @@ const impacts = [
     heading: "Experienced\nConsultants",
     body: "Seasoned professionals guiding every phase of your project — from feasibility and planning through to final handover. Our consultants bring decades of industry knowledge to the table.",
     image: imgPlanning,
-    imageAccent: "#00c700",
+    imageAccent: "#ffffff",
     imageLabel: "CONSULTING EXCELLENCE",
     flip: false,
   },
@@ -36,7 +36,7 @@ const impacts = [
     heading: "Expert\nEmployees",
     body: "A dedicated crew of certified engineers, project managers, and skilled tradespeople united by one purpose — building structures that stand the test of time.",
     image: imgWorkers,
-    imageAccent: "#00c700",
+    imageAccent: "#ffffff",
     imageLabel: "SKILLED WORKFORCE",
     flip: false,
   },
@@ -47,7 +47,7 @@ const impacts = [
     heading: "Countries\nServed",
     body: "An international footprint delivering world-class construction standards across borders. Wherever your vision takes root, we have the reach to build it.",
     image: imgCountries,
-    imageAccent: "#00c700",
+    imageAccent: "#ffffff",
     imageLabel: "WORLDWIDE IMPACT",
     flip: true,
   },
@@ -198,7 +198,7 @@ const ImpactSection = () => {
       <div className="bg-white px-6 md:px-16 lg:px-24 pt-24 pb-4">
         <FadeIn direction="up" duration={1.1}>
           <p className="text-[#00c700] text-xs font-bold tracking-[0.4em] uppercase mb-4">
-            Why Prime Mage
+            Why Mage Prime
           </p>
         </FadeIn>
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
@@ -210,7 +210,7 @@ const ImpactSection = () => {
           </FadeIn>
           <FadeIn direction="up" delay={0.25} duration={1.2}>
             <p className="text-gray-400 max-w-sm text-sm leading-relaxed lg:text-right">
-              Every figure below represents real people, real structures, and real communities — shaped by Prime Mage Construction.
+              Every figure below represents real people, real structures, and real communities — shaped by Mage Prime.
             </p>
           </FadeIn>
         </div>

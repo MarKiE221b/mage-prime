@@ -41,16 +41,16 @@ const HeroSection = () => {
       >
         {/* Pre-heading label */}
         <p className="text-[#00c700] text-xs font-semibold tracking-[0.35em] uppercase mb-4">
-          Est. 2024 &nbsp;·&nbsp; Prime Mage Construction
+          Est. 2024 &nbsp;·&nbsp; Mage Prime
         </p>
 
         {/* Main heading */}
         <div className="mb-6 leading-none">
           <span className="block text-white font-light text-[clamp(3rem,7vw,6rem)] tracking-tight">
-            Building a
+            Designing with Purpose,
           </span>
           <span className="block hero-script text-[clamp(3.5rem,8.5vw,7.5rem)] text-white leading-none">
-            Legacy.
+            Building with Precision.
             {/* Green script underline */}
             <svg
               aria-hidden="true"

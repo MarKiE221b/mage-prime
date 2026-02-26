@@ -25,7 +25,7 @@ html, body {
   background-color: #000;
   color: #fff;
   font-family: system-ui, -apple-system, sans-serif;
-  scroll-behavior: smooth;
+  /* scroll-behavior handled by Lenis */
 }
 
 /* ── Impact section: image slide-in ── */
