@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap");
+@import "tailwindcss";
+
+/* ── Custom font for hero script heading ── */
+.hero-script {
+  font-family: "Dancing Script", cursive;
+  font-weight: 700;
+}
+
+/* ── Scroll dot bounce animation ── */
+@keyframes scroll-dot {
+  0%   { transform: translateY(0);    opacity: 1; }
+  80%  { transform: translateY(10px); opacity: 0.2; }
+  100% { transform: translateY(0);    opacity: 1; }
+}
+
+.animate-scroll-dot {
+  animation: scroll-dot 1.8s ease-in-out infinite;
+}
+
+/* ── Global reset ── */
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  color: #fff;
+  font-family: system-ui, -apple-system, sans-serif;
+  scroll-behavior: smooth;
+}
+
+/* ── Impact section: image slide-in ── */
+/* Transitions are now handled inline by the FadeIn component (src/components/FadeIn.jsx) */
+
