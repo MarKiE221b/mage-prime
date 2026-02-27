@@ -1,5 +1,5 @@
 import React from "react";
-import imgPlanning from "../../../assets/planning.jpg";
+import imgPlanning from "../../../assets/mage-companies.png";
 import FadeIn from "../../../components/FadeIn";
 
 const AboutIntro = () => {

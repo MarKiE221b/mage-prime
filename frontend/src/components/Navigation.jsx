@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router";
 import imgWorkers from "../assets/workers.jpg";
+import imgInfrastructure from "../assets/infra.jpg";
 
 // Use Lenis smooth scroll if available, fall back to native
 const scrollTo = (href) => {
@@ -21,12 +22,36 @@ const companyLinks = [
   },
 ];
 
+const servicesLinks = [
+  { label: "Residential", href: "/services/residential" },
+  {
+    label: "Commercial, Industrial & Institutional",
+    href: "/services/commercial",
+  },
+  { label: "Interior Design", href: "/services/interior" },
+  { label: "Infrastructure", href: "/services/infrastructure" },
+  { label: "Masterplan Development", href: "/services/masterplan" },
+  { label: "Construction & Development", href: "/services/construction" },
+  { label: "Project Management", href: "/services/project-management" },
+  { label: "Manpower Supply", href: "/services/manpower" },
+];
+
 const navLinks = [
-  { label: "Our Company", href: "#company", submenu: true },
-  { label: "Our Services", href: "#services" },
-  { label: "Our Projects", href: "#projects" },
-  { label: "News & Insights", href: "#news" },
-  { label: "Careers", href: "#careers" },
+  {
+    label: "Our Company",
+    href: "#company",
+    submenu: true,
+    submenuKey: "company",
+  },
+  {
+    label: "Our Services",
+    href: "/services",
+    submenu: true,
+    submenuKey: "services",
+  },
+  // { label: "Our Projects",   href: "#projects" },
+  // { label: "News & Insights", href: "#news" },
+  { label: "Careers", href: "/careers" },
 ];
 
 /* ── Mega‑menu dropdown ── */
@@ -98,10 +123,73 @@ const CompanyMegaMenu = ({ onClose }) => (
   </div>
 );
 
+/* ── Services mega‑menu dropdown ── */
+const ServicesMegaMenu = ({ onClose }) => (
+  <div className="absolute top-full left-0 right-0 flex shadow-2xl z-40 overflow-hidden">
+    {/* LEFT ACCENT PANEL */}
+    <div className="w-72 shrink-0 bg-[#00c700] p-10 flex flex-col justify-between">
+      <div>
+        <p className="text-black text-[10px] font-black tracking-[0.35em] uppercase mb-4">
+          Our Services
+        </p>
+        <h3 className="text-black text-2xl font-light leading-snug mb-6">
+          Architecture, Engineering &amp;
+          <br />
+          <span className="font-semibold">Construction — Integrated.</span>
+        </h3>
+        <Link
+          to="/services"
+          onClick={onClose}
+          className="group inline-flex items-center gap-3 text-black text-xs font-bold tracking-[0.3em] uppercase border-b-2 border-black/30 pb-1 hover:border-black transition-colors duration-200"
+        >
+          View All Services
+          <span className="inline-block transform translate-x-0 group-hover:translate-x-2 transition-transform duration-300">
+            →
+          </span>
+        </Link>
+      </div>
+      <p className="text-black/60 text-xs leading-relaxed mt-10">
+        Mage Dubai &mdash; Est. 2024
+      </p>
+    </div>
+    {/* SERVICE LINKS — 2 columns */}
+    <div className="flex-1 bg-white p-10">
+      <p className="text-gray-400 text-[10px] font-bold tracking-[0.35em] uppercase mb-5">
+        What We Offer
+      </p>
+      <ul className="grid grid-cols-2 gap-x-8 gap-y-3">
+        {servicesLinks.map((item) => (
+          <li key={item.label}>
+            <Link
+              to={item.href}
+              onClick={onClose}
+              className="text-gray-700 hover:text-[#00c700] text-sm transition-colors duration-200"
+            >
+              {item.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+    {/* RIGHT IMAGE PANEL */}
+    <div className="hidden xl:block w-72 shrink-0 relative">
+      <img
+        src={imgInfrastructure}
+        alt="Mage Dubai services"
+        className="w-full h-full object-cover"
+      />
+      <div className="absolute inset-0 bg-black/30" />
+      <p className="absolute bottom-6 left-6 text-white text-sm font-semibold tracking-wide">
+        Explore Our Work
+      </p>
+    </div>
+  </div>
+);
+
 const Navigation = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [submenuOpen, setSubmenuOpen] = useState(false);
+  const [activeSubmenu, setActiveSubmenu] = useState(null); // 'company' | 'services' | null
   const submenuTimeout = useRef(null);
 
   useEffect(() => {
@@ -110,16 +198,15 @@ const Navigation = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close submenu on route/scroll click
-  const closeSubmenu = () => setSubmenuOpen(false);
+  const closeSubmenu = () => setActiveSubmenu(null);
 
-  const handleMouseEnter = () => {
+  const handleMouseEnter = (key) => {
     clearTimeout(submenuTimeout.current);
-    setSubmenuOpen(true);
+    setActiveSubmenu(key);
   };
 
   const handleMouseLeave = () => {
-    submenuTimeout.current = setTimeout(() => setSubmenuOpen(false), 120);
+    submenuTimeout.current = setTimeout(() => setActiveSubmenu(null), 120);
   };
 
   return (
@@ -148,22 +235,26 @@ const Navigation = () => {
               <div
                 key={link.label}
                 className="relative"
-                onMouseEnter={handleMouseEnter}
+                onMouseEnter={() => handleMouseEnter(link.submenuKey)}
                 onMouseLeave={handleMouseLeave}
               >
                 <button
                   className={`flex items-center gap-1 text-sm font-medium tracking-wide transition-colors duration-200 ${
-                    submenuOpen
+                    activeSubmenu === link.submenuKey
                       ? "text-[#00c700]"
                       : "text-white/80 hover:text-[#00c700]"
                   }`}
-                  onClick={() => setSubmenuOpen((v) => !v)}
-                  aria-expanded={submenuOpen}
+                  onClick={() =>
+                    setActiveSubmenu((v) =>
+                      v === link.submenuKey ? null : link.submenuKey,
+                    )
+                  }
+                  aria-expanded={activeSubmenu === link.submenuKey}
                 >
                   {link.label}
                   <svg
                     className={`w-3.5 h-3.5 mt-0.5 transition-transform duration-200 ${
-                      submenuOpen ? "rotate-180" : ""
+                      activeSubmenu === link.submenuKey ? "rotate-180" : ""
                     }`}
                     viewBox="0 0 12 12"
                     fill="none"
@@ -177,12 +268,19 @@ const Navigation = () => {
                     />
                   </svg>
                 </button>
-
-                {/* Bottom indicator bar */}
-                {submenuOpen && (
+                {activeSubmenu === link.submenuKey && (
                   <span className="absolute -bottom-5.5 left-0 right-0 h-0.5 bg-[#00c700]" />
                 )}
               </div>
+            ) : link.href.startsWith("/") ? (
+              <Link
+                key={link.label}
+                to={link.href}
+                onClick={closeSubmenu}
+                className="text-white/80 hover:text-[#00c700] text-sm font-medium tracking-wide transition-colors duration-200"
+              >
+                {link.label}
+              </Link>
             ) : (
               <a
                 key={link.label}
@@ -202,7 +300,7 @@ const Navigation = () => {
 
         {/* ── RIGHT CTA GROUP ── */}
         <div className="hidden lg:flex items-center gap-4">
-          <button
+          {/* <button
             className="text-white/70 hover:text-white transition-colors p-1"
             aria-label="Search"
           >
@@ -220,19 +318,19 @@ const Navigation = () => {
                 d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"
               />
             </svg>
-          </button>
+          </button> */}
           <a
-            href="#contact"
+            href="/contact"
             className="text-white/80 hover:text-white text-sm font-medium tracking-wide transition-colors duration-200"
           >
             Contact Us
           </a>
-          <a
+          {/* <a
             href="#subcontractor"
             className="px-4 py-2 border border-[#00c700] text-[#00c700] text-sm font-semibold tracking-wide hover:bg-[#00c700] hover:text-black transition-all duration-300"
           >
             Get a Quote
-          </a>
+          </a> */}
         </div>
 
         {/* ── MOBILE HAMBURGER ── */}
@@ -253,17 +351,30 @@ const Navigation = () => {
         </button>
       </div>
 
-      {/* ── MEGA MENU ── */}
+      {/* ── COMPANY MEGA MENU ── */}
       <div
-        onMouseEnter={handleMouseEnter}
+        onMouseEnter={() => handleMouseEnter("company")}
         onMouseLeave={handleMouseLeave}
         className={`hidden lg:block transition-all duration-300 overflow-hidden ${
-          submenuOpen
+          activeSubmenu === "company"
             ? "max-h-150 opacity-100"
             : "max-h-0 opacity-0 pointer-events-none"
         }`}
       >
         <CompanyMegaMenu onClose={closeSubmenu} />
+      </div>
+
+      {/* ── SERVICES MEGA MENU ── */}
+      <div
+        onMouseEnter={() => handleMouseEnter("services")}
+        onMouseLeave={handleMouseLeave}
+        className={`hidden lg:block transition-all duration-300 overflow-hidden ${
+          activeSubmenu === "services"
+            ? "max-h-150 opacity-100"
+            : "max-h-0 opacity-0 pointer-events-none"
+        }`}
+      >
+        <ServicesMegaMenu onClose={closeSubmenu} />
       </div>
 
       {/* ── MOBILE MENU ── */}
@@ -274,14 +385,17 @@ const Navigation = () => {
       >
         <nav className="flex flex-col px-8 gap-5">
           {/* Our Company accordion */}
+          {/* Our Company accordion */}
           <div>
             <button
               className="w-full flex items-center justify-between text-white/80 text-sm font-medium tracking-wide py-1"
-              onClick={() => setSubmenuOpen((v) => !v)}
+              onClick={() =>
+                setActiveSubmenu((v) => (v === "company" ? null : "company"))
+              }
             >
               Our Company
               <svg
-                className={`w-3.5 h-3.5 transition-transform ${submenuOpen ? "rotate-180" : ""}`}
+                className={`w-3.5 h-3.5 transition-transform ${activeSubmenu === "company" ? "rotate-180" : ""}`}
                 viewBox="0 0 12 12"
                 fill="none"
               >
@@ -295,7 +409,7 @@ const Navigation = () => {
               </svg>
             </button>
             <div
-              className={`overflow-hidden transition-all duration-300 ${submenuOpen ? "max-h-40 mt-3" : "max-h-0"}`}
+              className={`overflow-hidden transition-all duration-300 ${activeSubmenu === "company" ? "max-h-40 mt-3" : "max-h-0"}`}
             >
               <div className="flex flex-col gap-3 pl-4 border-l border-[#00c700]">
                 {companyLinks[0].items.map((item) => (
@@ -304,7 +418,51 @@ const Navigation = () => {
                     to={item.href}
                     onClick={() => {
                       setMenuOpen(false);
-                      setSubmenuOpen(false);
+                      setActiveSubmenu(null);
+                    }}
+                    className="text-white/60 hover:text-[#00c700] text-sm transition-colors duration-200"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Our Services accordion */}
+          <div>
+            <button
+              className="w-full flex items-center justify-between text-white/80 text-sm font-medium tracking-wide py-1"
+              onClick={() =>
+                setActiveSubmenu((v) => (v === "services" ? null : "services"))
+              }
+            >
+              Our Services
+              <svg
+                className={`w-3.5 h-3.5 transition-transform ${activeSubmenu === "services" ? "rotate-180" : ""}`}
+                viewBox="0 0 12 12"
+                fill="none"
+              >
+                <path
+                  d="M2 4l4 4 4-4"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+            <div
+              className={`overflow-hidden transition-all duration-300 ${activeSubmenu === "services" ? "max-h-screen mt-3" : "max-h-0"}`}
+            >
+              <div className="flex flex-col gap-3 pl-4 border-l border-[#00c700]">
+                {servicesLinks.map((item) => (
+                  <Link
+                    key={item.label}
+                    to={item.href}
+                    onClick={() => {
+                      setMenuOpen(false);
+                      setActiveSubmenu(null);
                     }}
                     className="text-white/60 hover:text-[#00c700] text-sm transition-colors duration-200"
                   >
@@ -317,20 +475,31 @@ const Navigation = () => {
 
           {navLinks
             .filter((l) => !l.submenu)
-            .map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollTo(link.href);
-                  setMenuOpen(false);
-                }}
-                className="text-white/80 hover:text-[#00c700] text-sm font-medium tracking-wide transition-colors duration-200"
-              >
-                {link.label}
-              </a>
-            ))}
+            .map((link) =>
+              link.href.startsWith("/") ? (
+                <Link
+                  key={link.label}
+                  to={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="text-white/80 hover:text-[#00c700] text-sm font-medium tracking-wide transition-colors duration-200"
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollTo(link.href);
+                    setMenuOpen(false);
+                  }}
+                  className="text-white/80 hover:text-[#00c700] text-sm font-medium tracking-wide transition-colors duration-200"
+                >
+                  {link.label}
+                </a>
+              ),
+            )}
           <a
             href="#subcontractor"
             className="mt-2 px-4 py-2 border border-[#00c700] text-[#00c700] text-sm font-semibold tracking-wide text-center hover:bg-[#00c700] hover:text-black transition-all duration-300"
