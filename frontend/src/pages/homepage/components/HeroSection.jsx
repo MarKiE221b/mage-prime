@@ -41,7 +41,7 @@ const HeroSection = () => {
       >
         {/* Pre-heading label */}
         <p className="text-[#00c700] text-xs font-semibold tracking-[0.35em] uppercase mb-4">
-          Est. 2024 &nbsp;·&nbsp; Mage Prime
+          Est. 2011 &nbsp;·&nbsp; Mage Prime
         </p>
 
         {/* Main heading */}

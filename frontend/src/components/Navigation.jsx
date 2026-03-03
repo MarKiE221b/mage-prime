@@ -49,7 +49,7 @@ const navLinks = [
     submenu: true,
     submenuKey: "services",
   },
-  // { label: "Our Projects",   href: "#projects" },
+  { label: "Our Projects", href: "/projects" },
   // { label: "News & Insights", href: "#news" },
   { label: "Careers", href: "/careers" },
 ];
@@ -80,7 +80,7 @@ const CompanyMegaMenu = ({ onClose }) => (
         </Link>
       </div>
       <p className="text-black/60 text-xs leading-relaxed mt-10">
-        Mage Prime &mdash; Est. 2024
+        Mage Prime &mdash; Est. 2011
       </p>
     </div>
 
@@ -149,7 +149,7 @@ const ServicesMegaMenu = ({ onClose }) => (
         </Link>
       </div>
       <p className="text-black/60 text-xs leading-relaxed mt-10">
-        Mage Dubai &mdash; Est. 2024
+        Mage Prime &mdash; Est. 2011
       </p>
     </div>
     {/* SERVICE LINKS — 2 columns */}

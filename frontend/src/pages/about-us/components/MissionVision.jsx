@@ -149,7 +149,7 @@ const MissionVision = () => {
               partnership, in every community we serve."
             </blockquote>
             <p className="mt-6 text-[#00c700] text-xs font-semibold tracking-[0.3em] uppercase">
-              Mage Prime &nbsp;·&nbsp; Est. 2024
+              Mage Prime &nbsp;·&nbsp; Est. 2011
             </p>
           </div>
         </FadeIn>

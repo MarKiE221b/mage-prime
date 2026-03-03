@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
 
 const VARIANTS = {
-  up:    { hidden: { opacity: 0, y: 52 },               visible: { opacity: 1, y: 0 } },
-  down:  { hidden: { opacity: 0, y: -52 },              visible: { opacity: 1, y: 0 } },
-  left:  { hidden: { opacity: 0, x: -64, scale: 0.97 }, visible: { opacity: 1, x: 0, scale: 1 } },
-  right: { hidden: { opacity: 0, x: 64 },              visible: { opacity: 1, x: 0 } },
-  none:  { hidden: { opacity: 0 },                     visible: { opacity: 1 } },
+  up:    { hidden: { opacity: 0, y: 30 },  visible: { opacity: 1, y: 0 } },
+  down:  { hidden: { opacity: 0, y: -30 }, visible: { opacity: 1, y: 0 } },
+  left:  { hidden: { opacity: 0, x: -30 }, visible: { opacity: 1, x: 0 } },
+  right: { hidden: { opacity: 0, x: 30 },  visible: { opacity: 1, x: 0 } },
+  none:  { hidden: { opacity: 0 },          visible: { opacity: 1 } },
 };
 
 /**

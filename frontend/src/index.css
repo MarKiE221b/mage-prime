@@ -26,6 +26,9 @@ html, body {
   color: #fff;
   font-family: system-ui, -apple-system, sans-serif;
   /* scroll-behavior handled by Lenis */
+  /* Clip off-screen Framer Motion initial states so they don't
+     overflow/overlay on mobile before animations complete */
+  overflow-x: hidden;
 }
 
 /* ── Impact section: image slide-in ── */

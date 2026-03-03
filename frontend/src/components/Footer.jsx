@@ -3,8 +3,8 @@ import { Link } from "react-router";
 
 const navLinks = [
   { label: "Our Company", href: "/about-us" },
-  { label: "Our Services", href: "#services" },
-  // { label: "Our Projects", href: "#projects" },
+  { label: "Our Services", href: "/services" },
+  { label: "Our Projects", href: "/projects" },
   // { label: "News & Insights", href: "#news" },
   { label: "Careers", href: "/careers" },
   { label: "Contact", href: "/contact" },

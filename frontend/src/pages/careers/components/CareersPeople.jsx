@@ -3,10 +3,10 @@ import FadeIn from "../../../components/FadeIn";
 
 /* ── placeholder people — swap photo imports + data when ready ── */
 const people = [
-  { name: "Sarah Al Rashid",  title: "Lead Architect",         photo: null },
-  { name: "James Okafor",     title: "Senior Project Manager", photo: null },
-  { name: "Lena Stavros",     title: "Interior Design Lead",   photo: null },
-  { name: "Khalid Mansouri",  title: "Civil Engineer",         photo: null },
+  { name: "John Doe",  title: "Lead Architect",         photo: null },
+  { name: "John Doe",     title: "Senior Project Manager", photo: null },
+  { name: "John Doe",     title: "Interior Design Lead",   photo: null },
+  { name: "John Doe",  title: "Civil Engineer",         photo: null },
 ];
 
 const AvatarPlaceholder = () => (
